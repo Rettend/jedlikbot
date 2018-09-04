@@ -331,29 +331,28 @@ async def unlock(ctx, *, Reason=None):
         em.set_author(name=ctx.message.author, icon_url=ctx.message.author.avatar_url)
         timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
         em.set_footer(text=timer)
-        await bot.send_message(LogRoom, embed=em)
+        await bot.send_message(LogRoom, embed=em)"""
     
 @bot.command(pass_context=True)
-@commands.has_permissions(manage_messages=True)
+"""@commands.has_permissions(manage_messages=True)"""
 async def clear(ctx, number : int=None):
-    if number is None:
-        await bot.reply("**The usage is `r-clear {number of messages to delete}` ty.**")
-    else:
-        number += 1
-        deleted = await bot.purge_from(ctx.message.channel, limit=number)
-        num = number - 1
-        LogRoom = bot.get_channel(id="401752340366884885")
-        em = discord.Embed(title=None, description=f'{ctx.message.author} deleted __{num}__ messages', colour=0x3498db)
-        em.set_author(name=ctx.message.author, icon_url=ctx.message.author.avatar_url)
-        em.add_field(name="Channel", value=f"{ctx.message.channel.mention}")
-        timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
-        em.set_footer(text=timer)
-        msg = await bot.send_message(ctx.message.channel, embed=em)
-        await bot.send_message(LogRoom, embed=em)
-        await asyncio.sleep(4)
-        await bot.delete_message(msg)
+    if ctx.message.author.id in owner:
+        if number is None:
+            await bot.reply("**The usage is `r-clear {number of messages to delete}` ty.**")
+        else:
+            number += 1
+            deleted = await bot.purge_from(ctx.message.channel, limit=number)
+            num = number - 1
+            em = discord.Embed(title=None, description=f'{ctx.message.author} deleted __{num}__ messages', colour=0x3498db)
+            em.set_author(name=ctx.message.author, icon_url=ctx.message.author.avatar_url)
+            em.add_field(name="Channel", value=f"{ctx.message.channel.mention}")
+            timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
+            em.set_footer(text=timer)
+            """msg = await bot.send_message(ctx.message.channel, embed=em)
+            await asyncio.sleep(4)
+            await bot.delete_message(msg)"""
 
-@bot.command(pass_context=True)
+"""@bot.command(pass_context=True)
 async def roll(ctx, x : int=None, y : int=None):
     if x is None:
         await bot.reply("**The usage is `r-roll {number} {number}` ty.**")
