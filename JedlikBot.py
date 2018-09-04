@@ -334,7 +334,6 @@ async def unlock(ctx, *, Reason=None):
         await bot.send_message(LogRoom, embed=em)"""
     
 @bot.command(pass_context=True)
-"""@commands.has_permissions(manage_messages=True)"""
 async def clear(ctx, number : int=None):
     if ctx.message.author.id in owner:
         if number is None:
@@ -453,6 +452,10 @@ async def say(ctx, *, words=None):
 
 @bot.event
 async def on_message(message):
+    if message.content.startswith("!pénisz"):
+        await bot.send_message(message.channel, "**Pééééééééénisz!!!**")
+    if message.content.startswith("!anyád"):
+        await bot.send_message(message.channel, "**tied**")
     if message.content.startswith("!time"):
         timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
         await bot.send_message(message.channel, f"**{message.author.mention}, az idő: __{timer}__**")
