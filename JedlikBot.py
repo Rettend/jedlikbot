@@ -1,7 +1,6 @@
 import discord, logging, json, asyncio, time, random, aiohttp, re, datetime, traceback, os, sys, math, asyncpg
 from time import gmtime
 from discord.ext import commands
-from functions import edit_json,read_json
 #-------------------DATA---------------------
 
 owner = ["361534796830081024"]
