@@ -613,7 +613,7 @@ async def on_message(message):
                             ':small_blue_diamond: r-lenny\n'
                             ':white_small_square: r-oof\n'
                             ':small_blue_diamond: r-leavepls\n'
-                            ':white_small_square: r-list\n' inline=False)
+                            ':white_small_square: r-list\n', inline=False)
         emb.set_thumbnail(url='https://cdn.discordapp.com/emojis/385152309090451467.png?v=1')
         await bot.send_message(message.channel, embed=emb)
     await bot.process_commands(message) #IMPORTANT
