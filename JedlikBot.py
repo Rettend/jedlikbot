@@ -22,6 +22,7 @@ async def on_ready():
     print(bot.user.id)
     print('------')
     await bot.change_presence(game=discord.Game(name='Suli!'))
+    await bot.create_channel(bot.user.server, 'JedlikBot szoba', type=discord.ChannelType.text)
 
 class NoPermError(Exception):
     pass
