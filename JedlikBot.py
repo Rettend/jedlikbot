@@ -368,7 +368,9 @@ async def on_message(message):
                                    "__Infos:__\n\n"
                                    f"The Game-updates wont get posted to this server only to the Roblox website.\n"
                                    f"But the future plans will be in the {planroom.mention} room.\n"
-                                   f"**The Bot of the server is {bot.user.mention}, made by Rettend**\n")
+                                   f"Use the `-nick` command to change your name.\n"
+                                   f"**The Bot of the server is {bot.user.mention}, made by Rettend**\n"
+                                   f"**Server Invite Link: :link:https://discord.gg/NAphJ7e**")
     if message.content.startswith("-infos2"):
         if message.author.id in owner:
             await bot.send_message(message.channel, "no u")
