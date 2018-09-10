@@ -339,12 +339,12 @@ async def on_member_remove(member):
 async def on_message(message):
     if message.content.startswith("-infos"):
         if message.author.id in owner:
-            tier1 = discord.utils.get(ctx.message.server.roles, name="Exp Award Tier I")
-            tier2 = discord.utils.get(ctx.message.server.roles, name="Exp Award Tier II")
-            tier3 = discord.utils.get(ctx.message.server.roles, name="Exp Award Tier III")
-            tier4 = discord.utils.get(ctx.message.server.roles, name="Exp Award Tier IV")
-            tier5 = discord.utils.get(ctx.message.server.roles, name="Exp Award Tier V")
-            tier6 = discord.utils.get(ctx.message.server.roles, name="Exp Award Tier VI")
+            tier1 = discord.utils.get(message.server.roles, name="Exp Award Tier I")
+            tier2 = discord.utils.get(message.server.roles, name="Exp Award Tier II")
+            tier3 = discord.utils.get(message.server.roles, name="Exp Award Tier III")
+            tier4 = discord.utils.get(message.server.roles, name="Exp Award Tier IV")
+            tier5 = discord.utils.get(message.server.roles, name="Exp Award Tier V")
+            tier6 = discord.utils.get(message.server.roles, name="Exp Award Tier VI")
             planroom = bot.get_channel(id="488701294287126528")
             dev = discord.utils.get(message.server.roles, name="Developer Team")
             mod = discord.utils.get(message.server.roles, name="Moderator")
