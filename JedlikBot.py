@@ -52,7 +52,7 @@ async def unban(ctx, user : discord.User=None, *, Reason=None):
             else:
                 room = ctx.message.channel
                 await bot.unban(ctx.message.server, user)
-                LogRoom = bot.get_channel(id="401752340366884885")
+                LogRoom = bot.get_channel(id="488714781738532864")
                 await bot.say(f"**{user.mention} got unbanned by {ctx.message.author.mention} for __{Reason}__\nSee the logs in {LogRoom.mention}**")
                 em = discord.Embed(title="╲⎝⧹𝓤𝓝𝓑𝓐𝓝⧸⎠╱", description=None, colour=0xe91e63)
                 em.add_field(name="User", value=f"{user.mention}")
@@ -80,7 +80,7 @@ async def ban(ctx, user : discord.User=None, Day : int=None, *, Reason=None):
         else:
             room = ctx.message.channel
             await bot.ban(user, delete_message_days=Day)
-            LogRoom = bot.get_channel(id="401752340366884885")
+            LogRoom = bot.get_channel(id="488714781738532864")
             await bot.say(f"**{user.mention} got banned by {ctx.message.author.mention} for __{Reason}__\nSee the logs in {LogRoom.mention}**")
             em = discord.Embed(title="╲⎝⧹𝓑𝓐𝓝⧸⎠╱", description=None, colour=0xad1457)
             em.add_field(name="User", value=f"{user.mention}")
@@ -107,7 +107,7 @@ async def kick(ctx, user : discord.User=None, *, Reason=None):
         else:
             room = ctx.message.channel
             await bot.kick(user)
-            LogRoom = bot.get_channel(id="401752340366884885")
+            LogRoom = bot.get_channel(id="488714781738532864")
             await bot.say(f"**{user.mention} got Kicked by {ctx.message.author.mention} for __{Reason}__\nSee the logs in {LogRoom.mention}**")
             em = discord.Embed(title="╲⎝⧹𝓚𝓘𝓒𝓚⧸⎠╱", description=None, colour=0xe74c3c)
             em.add_field(name="User", value=f"{user.mention}")
@@ -133,7 +133,7 @@ async def mute(ctx, user : discord.User=None, duration : int=None, *, Reason=Non
         if user.id == ctx.message.author.id:
             await bot.say("**I won't let you moderate yourself xD**")
         else:
-            LogRoom = bot.get_channel(id="401752340366884885")
+            LogRoom = bot.get_channel(id="488714781738532864")
             room = ctx.message.channel
             MutedRole = discord.utils.get(ctx.message.server.roles, name="Muted")
             await bot.add_roles(user, MutedRole)
@@ -173,7 +173,7 @@ async def unmute(ctx, user : discord.User=None, *, Reason=None):
         if user.id == ctx.message.author.id:
             await bot.say("**I won't let you moderate yourself xD**")
         else:
-            LogRoom = bot.get_channel(id="401752340366884885")
+            LogRoom = bot.get_channel(id="488714781738532864")
             room = ctx.message.channel
             MutedRole = discord.utils.get(ctx.message.server.roles, name="Muted")
             await bot.remove_roles(user, MutedRole)
@@ -223,7 +223,7 @@ async def lock(ctx, duration : int=None, *, Reason=None):
         overwrite.send_messages = False
         await bot.edit_channel_permissions(ctx.message.channel, Registered, overwrite)
         await bot.send_message(ctx.message.channel, f"**{ctx.message.channel.mention} is now locked for __{Reason}__**")
-        LogRoom = bot.get_channel(id="401752340366884885")
+        LogRoom = bot.get_channel(id="488714781738532864")
         em = discord.Embed(title="╲⎝⧹𝓛𝓞𝓒𝓚⧸⎠╱", description=None, colour=0x1f8b4c)
         em.add_field(name="Channel", value=f"{ctx.message.channel.mention}")
         em.add_field(name="Moderator", value=f"{ctx.message.author}")
@@ -238,7 +238,7 @@ async def lock(ctx, duration : int=None, *, Reason=None):
         overwrite.send_messages = True
         await bot.edit_channel_permissions(ctx.message.channel, Registered, overwrite)
         await bot.send_message(ctx.message.channel, f"**{ctx.message.channel.mention} is now unlocked for __{Reason}__**")
-        LogRoom = bot.get_channel(id="401752340366884885")
+        LogRoom = bot.get_channel(id="488714781738532864")
         em = discord.Embed(title="╲⎝⧹𝓤𝓝𝓛𝓞𝓒𝓚⧸⎠╱", description=None, colour=0x2ecc71)
         em.add_field(name="Channel", value=f"{ctx.message.channel.mention}")
         em.add_field(name="Moderator", value=f"{ctx.message.author}")
@@ -259,7 +259,7 @@ async def unlock(ctx, *, Reason=None):
         overwrite.send_messages = True
         await bot.edit_channel_permissions(ctx.message.channel, Registered, overwrite)
         await bot.send_message(ctx.message.channel, f"**{ctx.message.channel.mention} is now unlocked for __{Reason}__**")
-        LogRoom = bot.get_channel(id="401752340366884885")
+        LogRoom = bot.get_channel(id="488714781738532864")
         em = discord.Embed(title="╲⎝⧹𝓤𝓝𝓛𝓞𝓒𝓚⧸⎠╱", description=None, colour=0x2ecc71)
         em.add_field(name="Channel", value=f"{ctx.message.channel.mention}")
         em.add_field(name="Moderator", value=f"{ctx.message.author}")
@@ -270,34 +270,24 @@ async def unlock(ctx, *, Reason=None):
         await bot.send_message(LogRoom, embed=em)
     
 @bot.command(pass_context=True)
+@commands.has_permissions(manage_messages=True)
 async def clear(ctx, number : int=None):
-    if ctx.message.author.id in owner:
-        if number is None:
-            await bot.reply("**The usage is `r-clear {number of messages to delete}` ty.**")
-        else:
-            number += 1
-            deleted = await bot.purge_from(ctx.message.channel, limit=number)
-            num = number - 1
-            em = discord.Embed(title=None, description=f'{ctx.message.author} deleted __{num}__ messages', colour=0x3498db)
-            em.set_author(name=ctx.message.author, icon_url=ctx.message.author.avatar_url)
-            em.add_field(name="Channel", value=f"{ctx.message.channel.mention}")
-            timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
-            em.set_footer(text=timer)
-            """msg = await bot.send_message(ctx.message.channel, embed=em)
-            await asyncio.sleep(4)
-            await bot.delete_message(msg)"""
-
-@bot.command(pass_context=True)
-async def roll(ctx, x : int=None, y : int=None):
-    if x is None:
-        await bot.reply("**The usage is `r-roll {number} {number}` ty.**")
-    elif y is None:
-        await bot.reply("**The usage is `r-roll {number} {number}` ty.**")
+    if number is None:
+        await bot.reply("**The usage is `r-clear {number of messages to delete}` ty.**")
     else:
-        msg = random.randint(x, y)
-        text = await bot.send_message(ctx.message.channel, "**Hmmm...**")
-        await asyncio.sleep(3)
-        await bot.edit_message(text, f"**Oh, my choose: {msg}**")
+        number += 1
+        deleted = await bot.purge_from(ctx.message.channel, limit=number)
+        num = number - 1
+        LogRoom = bot.get_channel(id="488714781738532864")
+        em = discord.Embed(title=None, description=f'{ctx.message.author} deleted __{num}__ messages', colour=0x3498db)
+        em.set_author(name=ctx.message.author, icon_url=ctx.message.author.avatar_url)
+        em.add_field(name="Channel", value=f"{ctx.message.channel.mention}")
+        timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
+        em.set_footer(text=timer)
+        msg = await bot.send_message(ctx.message.channel, embed=em)
+        await bot.send_message(LogRoom, embed=em)
+        await asyncio.sleep(4)
+        await bot.delete_message(msg)
 
 @bot.command()
 async def game(*, play=None):
