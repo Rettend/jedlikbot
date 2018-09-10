@@ -4,13 +4,14 @@ from discord.ext import commands
 #-------------------DATA---------------------
 
 owner = ["361534796830081024"]
-bot = commands.Bot(command_prefix='!', description=None)
+bot = commands.Bot(command_prefix='-', description=None)
 bot.remove_command("help")
 message = discord.Message
 server = discord.Server
 member = discord.Member
 user = discord.User
 permissions = discord.Permissions
+PRserver = "Block TDM"
 """timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())"""
 #--------------------------------------------
 
@@ -21,7 +22,7 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-    await bot.change_presence(game=discord.Game(name='Suli!'))
+    await bot.change_presence(game=discord.Game(name='Block TDM!'))
 
 class NoPermError(Exception):
     pass
@@ -31,7 +32,7 @@ class NoPermError(Exception):
 @bot.command(pass_context=True)
 async def slap(ctx, member : discord.Member=None, *, Reason=None):
     if member is None:
-        await bot.reply("**Usage: `r-slap {member} {Reason}` thx.**")
+        await bot.reply("**Usage: `-slap {member} {Reason}` thx.**")
     else:
         await bot.say(f"**{ctx.message.author} slaps {member.mention}, for __{Reason}__**")
 
@@ -39,9 +40,9 @@ async def slap(ctx, member : discord.Member=None, *, Reason=None):
 @commands.has_permissions(ban_members=True)
 async def unban(ctx, user : discord.User=None, *, Reason=None):
     if user is None:
-        await bot.reply("**The usage is `r-unban {member} {Reason}` ty.**")
+        await bot.reply("**The usage is `-unban {member} {Reason}` ty.**")
     elif Reason is None:
-        await bot.reply("**The usage is `r-slap {member} {Reason}` ty.**")
+        await bot.reply("**The usage is `-slap {member} {Reason}` ty.**")
     else:
         if user.id == ctx.message.author.id:
             await bot.say("**I won't let you moderate yourself xD**")
@@ -69,11 +70,11 @@ async def unban(ctx, user : discord.User=None, *, Reason=None):
 @commands.has_permissions(ban_members=True)
 async def ban(ctx, user : discord.User=None, Day : int=None, *, Reason=None):
     if user is None:
-        await bot.reply("**The usage is `r-ban {member} {0 - 7 amount of days to delete his messages} {Reason}` ty.**")
+        await bot.reply("**The usage is `-ban {member} {0 - 7 amount of days to delete his messages} {Reason}` ty.**")
     elif Reason is None:
-        await bot.reply("**The usage is `r-ban {member} {0 - 7 amount of days to delete his messages} {Reason}` ty.**")
+        await bot.reply("**The usage is `-ban {member} {0 - 7 amount of days to delete his messages} {Reason}` ty.**")
     elif Day is None:
-        await bot.reply("**The usage is `r-ban {member} {0 - 7 amount of days to delete his messages} {Reason}` ty.**")
+        await bot.reply("**The usage is `-ban {member} {0 - 7 amount of days to delete his messages} {Reason}` ty.**")
     else:
         if user.id == ctx.message.author.id:
             await bot.say("**I won't let you moderate yourself xD**")
@@ -98,9 +99,9 @@ async def ban(ctx, user : discord.User=None, Day : int=None, *, Reason=None):
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, user : discord.User=None, *, Reason=None):
     if user is None:
-        await bot.reply("**The usage is `r-kick {member} {Reason}` ty.**")
+        await bot.reply("**The usage is `-kick {member} {Reason}` ty.**")
     elif Reason is None:
-        await bot.reply("**The usage is `r-kick {member} {Reason}` ty.**")
+        await bot.reply("**The usage is `-kick {member} {Reason}` ty.**")
     else:
         if user.id == ctx.message.author.id:
             await bot.say("**I won't let you moderate yourself xD**")
@@ -124,11 +125,11 @@ async def kick(ctx, user : discord.User=None, *, Reason=None):
 @commands.has_permissions(manage_messages=True)
 async def mute(ctx, user : discord.User=None, duration : int=None, *, Reason=None):
     if user is None:
-        await bot.reply("**The usage is `r-mute {member} {duration(in sec)} {Reason}` ty.**")
+        await bot.reply("**The usage is `-mute {member} {duration(in sec)} {Reason}` ty.**")
     elif Reason is None:
-        await bot.reply("**The usage is `r-mute {member} {duration(in sec)} {Reason}` ty.**")
+        await bot.reply("**The usage is `-mute {member} {duration(in sec)} {Reason}` ty.**")
     elif duration is None:
-        await bot.reply("**The usage is `r-mute {member} {duration(in sec)} {Reason}` ty.**")
+        await bot.reply("**The usage is `-mute {member} {duration(in sec)} {Reason}` ty.**")
     else:
         if user.id == ctx.message.author.id:
             await bot.say("**I won't let you moderate yourself xD**")
@@ -166,9 +167,9 @@ async def mute(ctx, user : discord.User=None, duration : int=None, *, Reason=Non
 @commands.has_permissions(manage_messages=True)
 async def unmute(ctx, user : discord.User=None, *, Reason=None):
     if user is None:
-        await bot.reply("**The usage is `r-unmute {member} {Reason}` ty.**")
+        await bot.reply("**The usage is `-unmute {member} {Reason}` ty.**")
     elif Reason is None:
-        await bot.reply("**The usage is `r-unmute {member} {Reason}` ty.**")
+        await bot.reply("**The usage is `-unmute {member} {Reason}` ty.**")
     else:
         if user.id == ctx.message.author.id:
             await bot.say("**I won't let you moderate yourself xD**")
@@ -214,9 +215,9 @@ async def ping(ctx):
 @commands.has_permissions(manage_channels=True)
 async def lock(ctx, duration : int=None, *, Reason=None):
     if Reason is None:
-        await bot.reply("**The usage is `r-lock {duration (in sec)} {Reason}` ty.**")
+        await bot.reply("**The usage is `-lock {duration (in sec)} {Reason}` ty.**")
     elif duration is None:
-        await bot.reply("**The usage is `r-lock {duration (in sec)} {Reason}` ty.**")
+        await bot.reply("**The usage is `-lock {duration (in sec)} {Reason}` ty.**")
     else:
         Registered = discord.utils.get(ctx.message.server.roles, name="Registered")
         overwrite = discord.PermissionOverwrite()
@@ -252,7 +253,7 @@ async def lock(ctx, duration : int=None, *, Reason=None):
 @commands.has_permissions(manage_channels=True)
 async def unlock(ctx, *, Reason=None):
     if Reason is None:
-        await bot.reply("**The usage is `r-unlock {Reason}` ty.**")
+        await bot.reply("**The usage is `-unlock {Reason}` ty.**")
     else:
         Registered = discord.utils.get(ctx.message.server.roles, name="Registered")
         overwrite = discord.PermissionOverwrite()
@@ -273,7 +274,7 @@ async def unlock(ctx, *, Reason=None):
 @commands.has_permissions(manage_messages=True)
 async def clear(ctx, number : int=None):
     if number is None:
-        await bot.reply("**The usage is `r-clear {number of messages to delete}` ty.**")
+        await bot.reply("**The usage is `-clear {number of messages to delete}` ty.**")
     else:
         number += 1
         deleted = await bot.purge_from(ctx.message.channel, limit=number)
@@ -292,7 +293,7 @@ async def clear(ctx, number : int=None):
 @bot.command()
 async def game(*, play=None):
     if play is None:
-        await bot.reply("**Usage: `r-game {something}` thanks.**")
+        await bot.reply("**Usage: `-game {something}` thanks.**")
     else:
         await bot.change_presence(game=discord.Game(name=play))
         em = discord.Embed(title="Game Status", description=f"Game status changed to: __{play}__!", colour=0x3498db)
@@ -301,7 +302,7 @@ async def game(*, play=None):
 @bot.command(pass_context=True)
 async def nick(ctx, *, name=None):
     if name is None:
-        await bot.reply("**Usage: `r-name {something}` ty, boi.**")
+        await bot.reply("**Usage: `-name {something}` ty, boi.**")
     else:
         await bot.change_nickname(ctx.message.author, name)
         em = discord.Embed(title="Nickname", description=f"{ctx.message.author}'s nick is now: __{name}__!", colour=0x3498db)
@@ -310,7 +311,7 @@ async def nick(ctx, *, name=None):
 @bot.command(pass_context=True)
 async def say(ctx, *, words=None):
     if words is None:
-        await bot.reply("**Usage: `r-say {something}` ty.**")
+        await bot.reply("**Usage: `-say {something}` ty.**")
     else:
         await bot.say(f"**{words}**")
         
@@ -336,10 +337,10 @@ async def on_member_remove(member):
 
 @bot.event
 async def on_message(message):
-    if message.content.startswith("!time"):
+    if message.content.startswith("-time"):
         timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
         await bot.send_message(message.channel, f"**{message.author.mention}, the time is: __{timer}__**")
-    if message.content.startswith("!mod"):
+    if message.content.startswith("-mod"):
         em = discord.Embed(title="MODERATION COMMANDS", description=None, colour=0x3498db)
         em.add_field(name="Admin commands", value=":small_blue_diamond: r-ban {member} {0 - 7 amount of days to delete his messages} {Reason}\n"
                      ":black_small_square: Kicks the user and removes his messages for the given days, the user can't rejoin, until he gots unbanned\n"
@@ -364,7 +365,7 @@ async def on_message(message):
                      ":small_orange_diamond: r-clear {number of messages to delete}\n"
                      ":black_small_square: Deletes a specific amount of messages")
         await bot.send_message(message.channel, embed=em)
-    if message.content.startswith('!8ball'):
+    if message.content.startswith('-8ball'):
         await bot.send_message(message.channel, random.choice(['**It is certain :8ball:**',
                                                               '**It is decidedly so :8ball:**',
                                                               '**Without a doubt :8ball:**',
@@ -390,7 +391,7 @@ async def on_message(message):
                                                               '**Ha! :8ball:**',
                                                               '**Ask it to ur mum :8ball:**',
                                                               ':feelsUltraREE: ***REEEE* :8ball:**',]))
-    if message.content.startswith("r-help"):
+    if message.content.startswith("-help"):
         Rettend = discord.utils.get(message.server.members, id="361534796830081024")
         em = discord.Embed(title="HELP", description="__Hey! Dont get Scared, Ask for help!__\n"
                            "\n"
@@ -399,7 +400,7 @@ async def on_message(message):
                            f":small_blue_diamond: If you have any questions, ask it to {Rettend.mention}", colour=0x3498db)
         em.set_thumbnail(url="https://cdn.discordapp.com/emojis/430347128100093962.gif?v=1")
         await bot.send_message(message.channel, embed=em)
-    if message.content.startswith('!lenny'):
+    if message.content.startswith('-lenny'):
         ears = ['q{}p', 'ʢ{}ʡ', '⸮{}?', 'ʕ{}ʔ', 'ᖗ{}ᖘ', 'ᕦ{}ᕥ', 'ᕦ({})ᕥ', 'ᕙ({})ᕗ', 'ᘳ{}ᘰ', 'ᕮ{}ᕭ', 'ᕳ{}ᕲ', '({})', '[{}]', '୧{}୨', '୨{}୧', '⤜({})⤏', '☞{}☞', 'ᑫ{}ᑷ', 'ᑴ{}ᑷ', 'ヽ({})ﾉ', '乁({})ㄏ', '└[{}]┘', '(づ{})づ', '(ง{})ง', '|{}|']
         eyes = ['⌐■{}■', ' ͠°{} °', '⇀{}↼', '´• {} •`', '´{}`', '`{}´', 'ó{}ò', 'ò{}ó', '>{}<', 'Ƹ̵̡ {}Ʒ', 'ᗒ{}ᗕ', '⪧{}⪦', '⪦{}⪧', '⪩{}⪨', '⪨{}⪩', '⪰{}⪯', '⫑{}⫒', '⨴{}⨵', "⩿{}⪀", "⩾{}⩽", "⩺{}⩹", "⩹{}⩺", "◥▶{}◀◤", "≋{}≋", "૦ઁ{}૦ઁ", "  ͯ{}  ͯ", "  ̿{}  ̿", "  ͌{}  ͌", "ළ{}ළ", "◉{}◉", "☉{}☉", "・{}・", "▰{}▰", "ᵔ{}ᵔ", "□{}□", "☼{}☼", "*{}*", "⚆{}⚆", "⊜{}⊜", ">{}>", "❍{}❍", "￣{}￣", "─{}─", "✿{}✿", "•{}•", "T{}T", "^{}^", "ⱺ{}ⱺ", "@{}@", "ȍ{}ȍ", "x{}x", "-{}-", "${}$", "Ȍ{}Ȍ", "ʘ{}ʘ", "Ꝋ{}Ꝋ", "๏{}๏", "■{}■", "◕{}◕", "◔{}◔", "✧{}✧", "♥{}♥", " ͡°{} ͡°", "¬{}¬", " º {} º ", "⍜{}⍜", "⍤{}⍤", "ᴗ{}ᴗ", "ಠ{}ಠ", "σ{}σ"]
         mouth = ['v', 'ᴥ', 'ᗝ', 'Ѡ', 'ᗜ', 'Ꮂ', 'ヮ', '╭͜ʖ╮', ' ͟ل͜', ' ͜ʖ', ' ͟ʖ', ' ʖ̯', 'ω', '³', ' ε ', '﹏', 'ل͜', '╭╮', '‿‿', '▾', '‸', 'Д', '∀', '!', '人', '.', 'ロ', '_', '෴', 'ѽ', 'ഌ', '⏏', 'ツ', '益']
@@ -413,7 +414,7 @@ async def on_message(message):
         msg2 = random.choice(f)
         msg3 = random.choice(mark)
         await bot.send_message(message.channel, msg1 + msg2 + msg3)
-    if message.content.startswith('!leavepls'):
+    if message.content.startswith('-leavepls'):
         em5 = discord.Embed(title=":warning: WARNING :warning:", description="THE BOT WILL LEAVE THE SERVER IN:\n"
                             ":large_blue_circle::large_blue_circle::large_blue_circle::large_blue_circle::black_circle:\n"
                             ":large_blue_circle::black_circle::black_circle::black_circle::black_circle:\n"
@@ -477,9 +478,9 @@ async def on_message(message):
         em = discord.Embed(title="lol Joke", colour=0x3498db)
         em.set_thumbnail(url="https://cdn.discordapp.com/emojis/423864027610087426.png?v=1")
         await bot.edit_message(msg,  embed=em)
-    if message.content.startswith('r-list'):
+    if message.content.startswith('-list'):
         await bot.send_message(message.channel, "**Usage: `r-list 1` and `r-list 2`**")
-    if message.content.startswith('r-list 1'):
+    if message.content.startswith('-list 1'):
         emb = discord.Embed(title='MY COMMANDS:', description="Hey, check out my commands!", colour=0x3498db)
         emb.add_field(name='--------------------', value=
                             ':white_small_square: r-slap\n'
@@ -490,7 +491,7 @@ async def on_message(message):
         emb.set_thumbnail(url='https://cdn.discordapp.com/emojis/385152309090451467.png?v=1')
         emb.set_footer(text='The Official Bot of Block TDM Discord, inviting and using the Bot in other servers breaks the Term of Use.\nType r-help 2 for more commands!!')
         await bot.send_message(message.channel, embed=emb)
-    if message.content.startswith('r-list 2'):
+    if message.content.startswith('-list 2'):
         emb = discord.Embed(title='MY COMMANDS:', description="Hey, check out my commands!", colour=0x3498db)
         emb.add_field(name='--------------------', value=
                             ':small_blue_diamond: r-time\n'
