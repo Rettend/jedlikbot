@@ -337,6 +337,25 @@ async def on_member_remove(member):
 
 @bot.event
 async def on_message(message):
+    if message.content.startswith("-infos"):
+        if message.author.id in owner:
+            planroom = bot.get_channel(id="488701294287126528")
+            dev = discord.utils.get(ctx.message.server.roles, name="Developer Team")
+            mod = discord.utils.get(ctx.message.server.roles, name="Moderator")
+            gt = discord.utils.get(ctx.message.server.roles, name="Game Tester")
+            bf = discord.utils.get(ctx.message.server.roles, name="Bug Finder")
+            gamehelper = discord.utils.get(ctx.message.server.roles, name="Game Helper")
+            await bot.send_message(message.channel, f"**__The Official Discord Server of Block TDM__**\n\n\n"
+                                   "__Roles:__\n\n"
+                                   f"{dev}: The Developers of the game, scripters, builders and Designers\n"
+                                   f"{mod}: The Server Moderators, they can use the moderation commands, beware spammers!!\n"
+                                   f"{gt}: awesome persons, they help to make the game better.\n"
+                                   f"{bf}: there are lot of bugs in every game, we need to find them <:pepeBigEyes:488707890044076032>\n"
+                                   f"{gamehelper}: a helpful guy, who has good ideas for the game :)\n\n"
+                                   "__Infos:__\n\n"
+                                   f"The Game-updates wont get posted to this server only to the Roblox website.\n"
+                                   f"But the future plans will be in the {planroom} room.\n"
+                                   f"**The Bot of the server is {bot.user.mention}, made by Rettend**\n"
     if message.content.startswith("-time"):
         timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
         await bot.send_message(message.channel, f"**{message.author.mention}, the time is: __{timer}__**")
