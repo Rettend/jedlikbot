@@ -355,7 +355,7 @@ async def on_message(message):
                                    "__Infos:__\n\n"
                                    f"The Game-updates wont get posted to this server only to the Roblox website.\n"
                                    f"But the future plans will be in the {planroom} room.\n"
-                                   f"**The Bot of the server is {bot.user.mention}, made by Rettend**\n"
+                                   f"**The Bot of the server is {bot.user.mention}, made by Rettend**\n")
     if message.content.startswith("-time"):
         timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
         await bot.send_message(message.channel, f"**{message.author.mention}, the time is: __{timer}__**")
