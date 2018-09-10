@@ -339,6 +339,12 @@ async def on_member_remove(member):
 async def on_message(message):
     if message.content.startswith("-infos"):
         if message.author.id in owner:
+            tier1 = discord.utils.get(ctx.message.server.roles, name="Exp Award Tier I")
+            tier2 = discord.utils.get(ctx.message.server.roles, name="Exp Award Tier II")
+            tier3 = discord.utils.get(ctx.message.server.roles, name="Exp Award Tier III")
+            tier4 = discord.utils.get(ctx.message.server.roles, name="Exp Award Tier IV")
+            tier5 = discord.utils.get(ctx.message.server.roles, name="Exp Award Tier V")
+            tier6 = discord.utils.get(ctx.message.server.roles, name="Exp Award Tier VI")
             planroom = bot.get_channel(id="488701294287126528")
             dev = discord.utils.get(message.server.roles, name="Developer Team")
             mod = discord.utils.get(message.server.roles, name="Moderator")
@@ -347,21 +353,21 @@ async def on_message(message):
             gamehelper = discord.utils.get(message.server.roles, name="Game Helper")
             await bot.send_message(message.channel, f"**__The Official Discord Server of Block TDM__**\n\n\n"
                                    "__Roles:__\n\n"
-                                   f"{dev}: The Developers of the game, scripters, builders and Designers\n"
-                                   f"{mod}: The Server Moderators, they can use the moderation commands, beware spammers!!\n"
-                                   f"{gt}: awesome persons, they help to make the game better.\n"
-                                   f"{bf}: there are lot of bugs in every game, we need to find them <:pepeBigEyes:488707890044076032>\n"
-                                   f"{gamehelper}: a helpful guy, who has good ideas for the game :)\n\n"
+                                   f"{dev.mention}: The Developers of the game, scripters, builders and Designers\n"
+                                   f"{mod.mention}: The Server Moderators, they can use the moderation commands, beware spammers!!\n"
+                                   f"{gt.mention}: awesome persons, they help to make the game better.\n"
+                                   f"{bf.mention}: there are lot of bugs in every game, we need to find them <:pepeBigEyes:488707890044076032>\n"
+                                   f"{gamehelper.mention}: a helpful guy, who has good ideas for the game :)\n\n"
                                    "__Exp Roles:__\n\n"
-                                   f"{tier1}: **lvl. 10** | Can use the `!yes` command\n"
-                                   f"{tier2}: **lvl. 20** | Can use the `!whoyou` command\n"
-                                   f"{tier3}: **lvl. 30** | Can use the `!promote` command\n"
-                                   f"{tier4}: **lvl. 40** | Can use the `!gimme-a-smile` command\n"
-                                   f"{tier5}: **lvl. 50** | Can use the `!updatewhen` command\n"
-                                   f"{tier6}: **lvl. 60** | Can use the `!neon` command\n\n"
+                                   f"{tier1.mention}: **lvl. 10** | Can use the `!yes` command\n"
+                                   f"{tier2.mention}: **lvl. 20** | Can use the `!whoyou` command\n"
+                                   f"{tier3.mention}: **lvl. 30** | Can use the `!promote` command\n"
+                                   f"{tier4.mention}: **lvl. 40** | Can use the `!gimme-a-smile` command\n"
+                                   f"{tier5.mention}: **lvl. 50** | Can use the `!updatewhen` command\n"
+                                   f"{tier6.mention}: **lvl. 60** | Can use the `!neon` command\n\n"
                                    "__Infos:__\n\n"
                                    f"The Game-updates wont get posted to this server only to the Roblox website.\n"
-                                   f"But the future plans will be in the {planroom} room.\n"
+                                   f"But the future plans will be in the {planroom.mention} room.\n"
                                    f"**The Bot of the server is {bot.user.mention}, made by Rettend**\n")
     if message.content.startswith("-infos2"):
         if message.author.id in owner:
