@@ -22,7 +22,8 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-    await bot.change_presence(game=discord.Game(name='Block TDM!'))
+    gamelist = ["Block TDM", "Run 'n Run", "Extreme Obby"]
+    await bot.change_presence(game=discord.Game(name=random.choice(gamelist)))
 
 class NoPermError(Exception):
     pass
@@ -351,7 +352,11 @@ async def on_message(message):
             gt = discord.utils.get(message.server.roles, name="Game Tester")
             bf = discord.utils.get(message.server.roles, name="Bug Finder")
             gamehelper = discord.utils.get(message.server.roles, name="Game Helper")
-            await bot.send_message(message.channel, f"**__The Official Discord Server of Block TDM__**\n\n\n"
+            await bot.send_message(message.channel, f"**__The Official Discord Server of the PR Dev Team__**\n\n\n"
+                                   "**PissRocket Developer Studio made games:** *-Try out them all!*\n\n"
+                                   "-__Block TDM__: a Team DeathMatch shooting game, you have rpg, turrets, giant robots and other cool stuff to destroy the enemy team!\n"
+                                   "-__Run 'n Run__: infinite runner game, explore, jump over the zombies or run from the werewolf!\n"
+                                   "-__Extreme Obby__: the crazy obby, try yourself on the stages to get higher and higher!\n\n"
                                    "__Roles:__\n\n"
                                    f"{dev.mention}: The Developers of the game, scripters, builders and Designers\n"
                                    f"{mod.mention}: The Server Moderators, they can use the moderation commands, beware spammers!!\n"
